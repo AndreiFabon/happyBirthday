@@ -40,7 +40,10 @@
         "static/images/flower2.png",
         "static/images/flower3.png",
         "static/images/flower4.png",
-        "static/images/flower5.png"
+        "static/images/flower5.png",
+        "static/images/flower6_transparent.png",
+        "static/images/flower7_transparent.png",
+        "static/images/flower8_transparent.png"
       ];
 
       const numberOfFlowers = Math.floor(Math.random() * 4) + 3;
@@ -48,13 +51,13 @@
       const baseY = 300;
 
       for (let i = 0; i < numberOfFlowers; i++) {
-        const angle = -30 + i * (60 / (numberOfFlowers - 1)); // fanned layout
+        const angle = -15 + i * (30 / (numberOfFlowers - 1)); // arc
 
         const flowerContainer = document.createElement("div");
         flowerContainer.style.position = "absolute";
         flowerContainer.style.bottom = "100px";
         flowerContainer.style.left = `${centerX}px`;
-        flowerContainer.style.transform = `rotate(${angle}deg) translateY(-100px)`;
+        flowerContainer.style.transform = `rotate(${angle}deg) translateY(-120px)`; // pulls them closer together visually
         flowerContainer.style.transformOrigin = "bottom center";
         flowerContainer.style.opacity = 0;
         flowerContainer.style.transition = "opacity 0.6s ease-in";
