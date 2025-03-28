@@ -55,7 +55,7 @@
 
         const flowerContainer = document.createElement("div");
         flowerContainer.style.position = "absolute";
-        flowerContainer.style.bottom = "100px";
+        flowerContainer.style.bottom = "40px";
         flowerContainer.style.left = `${centerX}px`;
         flowerContainer.style.transform = `rotate(${angle}deg) translateY(-120px)`; // pulls them closer together visually
         flowerContainer.style.transformOrigin = "bottom center";
@@ -97,10 +97,12 @@
       message.style.fontSize = "16px";
       message.style.color = "#444";
       message.style.textAlign = "center";
-      message.style.marginTop = "20px";
+      message.style.marginTop = "-150px"; //the message placement
 
       document.getElementById("quote-area").appendChild(message);
     }
   </script>
+
+  
 </body>
 </html>
