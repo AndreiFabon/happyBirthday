@@ -12,21 +12,87 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
       <div class="text-center">
         <h1 class="mb-4">🌸 Welcome to Your Flower Garden 🌸</h1>
-        <p class="mb-4">Happy Birthday Jasmine</p>
-        <button class="btn btn-outline-primary mb-3" onclick="bloom()">Flowers On Demand</button>
+        <p class="mb-4">Happy Birthday Jasmine!</p>
+        <button class="btn btn-outline-danger mb-3" onclick="bloom()">Flowers On Demand</button>
         <div id="flower-area" class="mt-4"></div>
       </div>
     </div>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        //How does one actually bloom pretty flowers!
-      function bloom() {
-        const flower = document.createElement("p");
-        flower.textContent = "🌼 A new flower just for you.";
-        document.getElementById("flower-area").appendChild(flower);
+
+   <script>
+  function bloom() {
+    const flowerArea = document.getElementById("flower-area");
+    flowerArea.innerHTML = ""; // Clear previous blooms
+    flowerArea.style.position = "relative";
+    flowerArea.style.width = "400px"; // fixed bouquet width
+    flowerArea.style.height = "400px"; // fixed bouquet height
+    flowerArea.style.margin = "0 auto"; // center horizontally
+    flowerArea.style.display = "block"; 
+
+    // Flower images
+    const flowerImages = [
+      "static/images/flower1.PNG",
+      "static/images/flower2.PNG",
+      "static/images/flower3.PNG",
+      "static/images/flower4.PNG",
+      "static/images/flower5.PNG",
+      "static/images/flower6_transparent.png",
+      "static/images/flower7_transparent.png",
+      "static/images/flower8_transparent.png"
+    ];
+
+    // Cute messages
+    const messages = [
+      "🌼 A new flower just for you.",
+      "💐 Every petal holds a wish.",
+      "🌸 Bloom where you're planted.",
+      "🌷 Happy thoughts only.",
+      "🌹 A gentle reminder: you're loved."
+    ];
+
+    const numberOfFlowers = Math.floor(Math.random() * 5) + 3;
+    const flowerWithMessageIndex = Math.floor(Math.random() * numberOfFlowers); // one random flower gets the message
+
+    for (let i = 0; i < numberOfFlowers; i++) {
+      const flowerContainer = document.createElement("div");
+      flowerContainer.style.position = "absolute";
+      flowerContainer.style.top = `${150 + Math.random() * 60 - 30}px`;
+      flowerContainer.style.left = `${150 + Math.random() * 60 - 30}px`;
+      flowerContainer.style.opacity = 0;
+      flowerContainer.style.transition = "opacity 1s ease-in";
+      flowerContainer.style.transform = `rotate(${Math.floor(Math.random() * 30 - 15)}deg)`;
+      flowerContainer.style.textAlign = "center";
+      flowerContainer.style.pointerEvents = "none";
+
+      const flowerImg = document.createElement("img");
+      flowerImg.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+      flowerImg.style.width = "100px";
+      flowerImg.style.display = "block";
+
+      flowerContainer.appendChild(flowerImg);
+
+      if (i === flowerWithMessageIndex) {
+        const message = document.createElement("p");
+        message.textContent = messages[Math.floor(Math.random() * messages.length)];
+        message.style.fontFamily = "serif";
+        message.style.marginTop = "6px";
+        message.style.fontSize = "14px";
+        message.style.color = "#444";
+        message.style.textAlign = "center";
+        flowerContainer.appendChild(message);
       }
-    </script>
+
+      flowerArea.appendChild(flowerContainer);
+
+      setTimeout(() => {
+        flowerContainer.style.opacity = 1;
+      }, i * 400);
+    }
+  }
+</script>
+
+    
   
   </body>
 
