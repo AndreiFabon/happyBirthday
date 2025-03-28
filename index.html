@@ -26,82 +26,106 @@
       renderBouquet();
       renderMessage();
     }
-
+  
     function clearCanvas() {
       document.getElementById("flower-area").innerHTML = "";
       document.getElementById("quote-area").innerHTML = "";
     }
-
+  
     function renderBouquet() {
       const flowerArea = document.getElementById("flower-area");
-
+  
       const flowerImages = [
         "static/images/flower1.png",
         "static/images/flower2.png",
         "static/images/flower3.png",
         "static/images/flower4.png",
-        "static/images/flower5.png",
         "static/images/flower6_transparent.png",
         "static/images/flower7_transparent.png",
         "static/images/flower8_transparent.png"
       ];
-
-      const numberOfFlowers = Math.floor(Math.random() * 4) + 3;
-      const centerX = 180; // aligns with the div's fixed width
-      const baseY = 300;
-
+  
+      const numberOfFlowers = Math.floor(Math.random() * 4) + 5;
+      const centerX = 180;
+  
       for (let i = 0; i < numberOfFlowers; i++) {
-        const angle = -15 + i * (30 / (numberOfFlowers - 1)); // arc
-
+        const angle = -15 + i * (30 / (numberOfFlowers - 1));
+  
         const flowerContainer = document.createElement("div");
         flowerContainer.style.position = "absolute";
         flowerContainer.style.bottom = "40px";
         flowerContainer.style.left = `${centerX}px`;
-        flowerContainer.style.transform = `rotate(${angle}deg) translateY(-120px)`; // pulls them closer together visually
+        flowerContainer.style.transform = `rotate(${angle}deg) translateY(-120px)`;
         flowerContainer.style.transformOrigin = "bottom center";
         flowerContainer.style.opacity = 0;
         flowerContainer.style.transition = "opacity 0.6s ease-in";
-
+  
         const flowerImg = document.createElement("img");
         flowerImg.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
         flowerImg.style.width = "80px";
         flowerImg.style.display = "block";
         flowerImg.style.filter = "drop-shadow(0 2px 6px rgba(0,0,0,0.1))";
-
+  
         flowerContainer.appendChild(flowerImg);
         flowerArea.appendChild(flowerContainer);
-
+  
         setTimeout(() => {
           flowerContainer.style.opacity = 1;
         }, i * 250);
       }
-
+  
+      // 🌸 Create the ribbon base image
+      const baseImage = document.createElement("img");
+      baseImage.src = "static/images/ribbon.png"; // ✅ ensure this file exists
+      baseImage.style.position = "absolute";
+      baseImage.style.bottom = "60px";
+      baseImage.style.left = "55%";
+      baseImage.style.transform = "translateX(-50%)";
+      baseImage.style.width = "120px"; // 🎀 bigger bow
+      baseImage.style.opacity = 0;
+      baseImage.style.transition = "opacity 0.8s ease-in";
+      baseImage.style.zIndex = "10";
+  
+      flowerArea.appendChild(baseImage);
+  
+      // ⏳ Show the ribbon after all flowers are revealed
+      const delay = numberOfFlowers * 250;
+      setTimeout(() => {
+        baseImage.style.opacity = 1;
+      }, delay + 300);
+  
+      // Layout for flower area
       flowerArea.style.position = "relative";
       flowerArea.style.width = "400px";
       flowerArea.style.height = "400px";
       flowerArea.style.margin = "0 auto";
     }
-
+  
     function renderMessage() {
-      const messages = [
-        "🌼 A flower just for you.",
-        "🌸 Keep blooming, even in finals.",
-        "🌷 Just a little joy for your day.",
-        "💐 You're doing amazing.",
-        "🌹 Soft reminder: you're cared for."
-      ];
+  const messages = [
+    "🌼 A flower just for you.",
+    "🌸 Keep blooming, even in finals.",
+    "🌷 Just a little joy for your day.",
+    "💐 You're doing amazing.",
+    "🌹 Soft reminder: you're cared for."
+  ];
 
-      const message = document.createElement("p");
-      message.textContent = messages[Math.floor(Math.random() * messages.length)];
-      message.style.fontFamily = "serif";
-      message.style.fontSize = "16px";
-      message.style.color = "#444";
-      message.style.textAlign = "center";
-      message.style.marginTop = "-150px"; //the message placement
+  const message = document.createElement("p");
+  message.textContent = messages[Math.floor(Math.random() * messages.length)];
+  message.style.fontFamily = "serif";
+  message.style.fontSize = "16px";
+  message.style.color = "#444";
+  message.style.textAlign = "center";
+  message.style.marginTop = "-50px";
+  message.style.width = "100%"; // 💡 ensures full-width centering
+  message.style.display = "block"; // 🔒 fallback for cross-browser centering
 
-      document.getElementById("quote-area").appendChild(message);
-    }
-  </script>
+  document.getElementById("quote-area").appendChild(message);
+}
+
+</script>
+  
+  
 
   
 </body>
