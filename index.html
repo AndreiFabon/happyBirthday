@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title>Home</title>
+  <title>Happy Birthday</title>
 </head>
 
-<body class="bg-light">
+<body style="background-color: #f8edf6;">
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="text-center">
-      <h1 class="mb-4">🌸 Welcome to Your Flower Garden 🌸</h1>
+      <h1 class="mb-4">🌸 Little Flower Garden 🌸</h1>
       <p class="mb-4">Happy Birthday Jasmine!</p>
       <button class="btn btn-outline-danger mb-3" onclick="bloom()">Flowers On Demand</button>
       <div id="flower-area" class="mt-4"></div>
@@ -74,21 +74,21 @@
         }, i * 250);
       }
   
-      // 🌸 Create the ribbon base image
+      //ribbon base image
       const baseImage = document.createElement("img");
-      baseImage.src = "static/images/ribbon.png"; // ✅ ensure this file exists
+      baseImage.src = "static/images/ribbon.png"; 
       baseImage.style.position = "absolute";
       baseImage.style.bottom = "60px";
       baseImage.style.left = "55%";
       baseImage.style.transform = "translateX(-50%)";
-      baseImage.style.width = "120px"; // 🎀 bigger bow
+      baseImage.style.width = "120px"; 
       baseImage.style.opacity = 0;
       baseImage.style.transition = "opacity 0.8s ease-in";
       baseImage.style.zIndex = "10";
   
       flowerArea.appendChild(baseImage);
   
-      // ⏳ Show the ribbon after all flowers are revealed
+      // Show the ribbon after flowers
       const delay = numberOfFlowers * 250;
       setTimeout(() => {
         baseImage.style.opacity = 1;
@@ -103,11 +103,15 @@
   
     function renderMessage() {
   const messages = [
-    "🌼 A flower just for you.",
-    "🌸 Keep blooming, even in finals.",
-    "🌷 Just a little joy for your day.",
-    "💐 You're doing amazing.",
-    "🌹 Soft reminder: you're cared for."
+    "🌼 A little bouquet just for you",
+    "🌸 Keep blooming, even during finals season",
+    "🌷 Just a little joy for your day",
+    "💐 You're doing amazing",
+    "🌹 Soft reminder: you're cared for",
+    "📚 Finals end. But your kindness doesn't",
+    "🌺 You don't have to be perfect",
+    "🌻 Slay the day AWAY",
+    "💮 STATS 161, LIGHT WORK"
   ];
 
   const message = document.createElement("p");
@@ -117,8 +121,8 @@
   message.style.color = "#444";
   message.style.textAlign = "center";
   message.style.marginTop = "-50px";
-  message.style.width = "100%"; // 💡 ensures full-width centering
-  message.style.display = "block"; // 🔒 fallback for cross-browser centering
+  message.style.width = "100%"; //full-width centering
+  message.style.display = "block"; //fallback for cross-browser centering
 
   document.getElementById("quote-area").appendChild(message);
 }
