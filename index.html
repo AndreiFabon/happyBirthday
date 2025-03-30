@@ -21,6 +21,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    let hasShownFirstMessage = false;
+  
     function bloom() {
       clearCanvas();
       renderBouquet();
@@ -74,7 +76,7 @@
         }, i * 250);
       }
   
-      //ribbon base image
+      // Ribbon base image
       const baseImage = document.createElement("img");
       baseImage.src = "static/images/ribbon.png"; 
       baseImage.style.position = "absolute";
@@ -88,13 +90,12 @@
   
       flowerArea.appendChild(baseImage);
   
-      // Show the ribbon after flowers
+      // Show ribbon after flowers
       const delay = numberOfFlowers * 250;
       setTimeout(() => {
         baseImage.style.opacity = 1;
       }, delay + 300);
   
-      // Layout for flower area
       flowerArea.style.position = "relative";
       flowerArea.style.width = "400px";
       flowerArea.style.height = "400px";
@@ -102,35 +103,42 @@
     }
   
     function renderMessage() {
-  const messages = [
-    "🌼 A little bouquet just for you",
-    "🌸 Keep blooming, even during finals season",
-    "🌷 Just a little joy for your day",
-    "💐 You're doing amazing",
-    "🌹 Soft reminder: you're cared for",
-    "📚 Finals end. But your kindness doesn't",
-    "🌺 You don't have to be perfect",
-    "🌻 Slay the day AWAY",
-    "💮 STATS 161, LIGHT WORK"
-  ];
-
-  const message = document.createElement("p");
-  message.textContent = messages[Math.floor(Math.random() * messages.length)];
-  message.style.fontFamily = "serif";
-  message.style.fontSize = "16px";
-  message.style.color = "#444";
-  message.style.textAlign = "center";
-  message.style.marginTop = "-50px";
-  message.style.width = "100%"; //full-width centering
-  message.style.display = "block"; //fallback for cross-browser centering
-
-  document.getElementById("quote-area").appendChild(message);
-}
-
-</script>
+      let messages = [
+        "Don't be afraid to press the button more than once :)",  
+        "🌼 A little bouquet just for you",
+        "🌸 Keep blooming, even during finals season",
+        "🌷 Just a little joy for your day",
+        "💐 You're doing amazing",
+        "🌹 Soft reminder: you're cared for",
+        "📚 Finals end. But your kindness doesn't",
+        "🌺 You don't have to be perfect",
+        "🌻 Slay the day AWAY",
+        "💮 STATS 161, LIGHT WORK"
+      ];
   
+      let messageText;
   
-
+      if (!hasShownFirstMessage) {
+        messageText = messages[0];
+        hasShownFirstMessage = true;
+      } else {
+        const filtered = messages.slice(1);
+        messageText = filtered[Math.floor(Math.random() * filtered.length)];
+      }
+  
+      const message = document.createElement("p");
+      message.textContent = messageText;
+      message.style.fontFamily = "serif";
+      message.style.fontSize = "16px";
+      message.style.color = "#444";
+      message.style.textAlign = "center";
+      message.style.marginTop = "-50px";
+      message.style.width = "100%";
+      message.style.display = "block";
+  
+      document.getElementById("quote-area").appendChild(message);
+    }
+  </script>
   
 </body>
 </html>
