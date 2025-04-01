@@ -1,4 +1,4 @@
-#🌸 Happy Birthday – A Thoughtful, Dynamic Web Gift
+# 🌸 Happy Birthday – A Thoughtful, Dynamic Web Gift
 
 This project is a creative, personalized birthday gift built entirely with HTML, JavaScript, and the Bootstrap framework. It’s designed to create a simple yet impactful digital experience—pressing a button triggers a bouquet of flowers to bloom dynamically on the screen, accompanied by a kind, rotating message.
 
