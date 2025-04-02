@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Andrei's little project for Jasmine"> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/styles.css">
   <title>Happy Birthday</title>
 </head>
 
@@ -19,6 +21,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <audio id="type-sound" src="static/computer-keyboard-typing-290582.mp3" preload="auto"></audio>
 
   <script>
     let hasShownFirstMessage = false;
@@ -104,41 +108,67 @@
     
     //this is jsut my messages I want to appear
     function renderMessage() {
-      let messages = [
-        "Don't be afraid to press the button more than once 😊",  
-        "🌼 A little bouquet just for you",
-        "🌸 Keep blooming, even during finals season",
-        "🌷 Just a little joy for your day",
-        "💐 You're doing amazing",
-        "🌹 Soft reminder: you're cared for",
-        "📚 Finals end. But your kindness doesn't",
-        "🌺 You don't have to be perfect",
-        "🌻 Slay the day AWAY",
-        "💮 STATS 161, LIGHT WORK"
-      ];
-  
-      let messageText;
-  
-      if (!hasShownFirstMessage) {
-        messageText = messages[0];
-        hasShownFirstMessage = true;
-      } else {
-        const filtered = messages.slice(1);
-        messageText = filtered[Math.floor(Math.random() * filtered.length)];
-      }
-  
-      const message = document.createElement("p");
-      message.textContent = messageText;
-      message.style.fontFamily = "serif";
-      message.style.fontSize = "16px";
-      message.style.color = "#444";
-      message.style.textAlign = "center";
-      message.style.marginTop = "-50px";
-      message.style.width = "100%";
-      message.style.display = "block";
-  
-      document.getElementById("quote-area").appendChild(message);
-    }
+  let messages = [
+    "Don't be afraid to press the button more than once 😊",  
+    "🌼 A little bouquet just for you",
+    "🌸 Finals season has NOTHING on you",
+    "🌷 Just a little joy for your day",
+    "💐 Crushing it. Even if you don't feel like it",
+    "🌹 You are going to be the best lawyer ever!",
+    "📚 Forgive me this once for being overly cheesy",
+    "🌺 Forget perfect. Just do your best",
+    "🌻 Slay the day AWAY",
+    "💮 STATS 161, LIGHT WORK"
+  ];
+
+  let messageText;
+
+  if (!hasShownFirstMessage) {
+    messageText = messages[0];
+    hasShownFirstMessage = true;
+  } else {
+    const filtered = messages.slice(1);
+    messageText = filtered[Math.floor(Math.random() * filtered.length)];
+  }
+
+  const quoteArea = document.getElementById("quote-area");
+  quoteArea.innerHTML = ""; // Clear previous message
+
+  const message = document.createElement("p");
+  message.textContent = messageText;
+  message.className = "typewriter";
+
+  const durationPerChar = 80; // ms per character
+  const characters = messageText.length;
+  const totalDuration = characters * durationPerChar;
+
+  // Dynamically set animation using the exact number of steps
+  message.style.animation = `
+    typing ${totalDuration}ms steps(${characters}, end) forwards,
+    blink-caret 0.6s step-end infinite
+  `;
+
+  quoteArea.appendChild(message);
+
+  const typingSound = document.getElementById("type-sound");
+typingSound.currentTime = 0;
+typingSound.play();
+
+// Stop it when typing ends
+setTimeout(() => {
+  typingSound.pause();
+  typingSound.currentTime = 0;
+}, totalDuration);
+
+
+  // Remove caret after typing finishes
+  setTimeout(() => {
+  message.classList.add("finished");
+}, totalDuration + 200);
+
+}
+
+
   </script>
   
 </body>
